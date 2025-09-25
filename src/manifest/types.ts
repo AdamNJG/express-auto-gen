@@ -1,4 +1,4 @@
-import { Request, Response, NextFunction } from "express";
+import { Request, Response, NextFunction } from 'express';
 
 export const enum EntryType {
   File = 'File',
@@ -14,7 +14,9 @@ export type File = {
     type: EntryType.File
     name: string;
     route: string;
-    function: (req: Request, res: Response, next?: NextFunction) => any;
+    function: ExpressFunction;
 }
 
 export type Entry = File | Folder;
+
+export type ExpressFunction = (req: Request, res: Response, next?: NextFunction) => any;
