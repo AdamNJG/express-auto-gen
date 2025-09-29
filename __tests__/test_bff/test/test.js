@@ -1,3 +1,3 @@
 export function handler(req, res) {
-    res.send("this is /test/");
+    res.send("this is /test/test");
 }

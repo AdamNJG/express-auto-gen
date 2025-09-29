@@ -1,34 +1,20 @@
 import express from 'express';
-import { createManifest } from './manifest/manifest.js';
-import { Entry, EntryType } from './manifest/types.js';
+import EndpointGenerator from './endpointGenerator/endpointGenerator.js';
+import * as path from 'path';
 
 export const app = express();
 const port = 3000;
 const dirPath = './bff_functions';
+const endpoints = './endpoints/endpoints.js';
 
 (async () => {
-  const manifest: Entry[] = await createManifest(dirPath);
+  const endpointGenerator = await EndpointGenerator.create(dirPath, path.resolve(endpoints));
 
-  manifest.map((e: Entry) => {
-    switch (e.type) {
-    case EntryType.Folder:
-      e.files.forEach((file: Entry) => {
-        if (file.type === EntryType.File) { 
-          const endpointName = file.name.includes('index.js') ? '' : file.name.replace('.js', '');
-          app.get(`/_api/${e.name}/${endpointName}`, file.function);
-          console.log(`/_api/${e.name}/${endpointName} added`);
-        }
-      });
-      break;
-    case EntryType.File: {
-      const endpointName = e.name.includes('index.js') ? '' :e.name.replace('.js', '');
+  const router = await endpointGenerator.getRouter();
 
-      app.get(`/_api/${endpointName}`, e.function);
-      console.log(`/_api/${endpointName} added`);
-      break;
-    } 
-    }
-  });
+  if (router) {
+    app.use('/_api', router);
+  }
 
   app.listen(port, () => {
     console.log(`Example app listening on port ${port}`);

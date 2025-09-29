@@ -1,4 +1,6 @@
 
-export function handler(req, res) {
-    res.send("this is the base route");
+export async function handler(req, res) {
+    const data = await fetch("https://dogapi.dog/api/v2/breeds");
+
+    res.send(await data.json());
 }
