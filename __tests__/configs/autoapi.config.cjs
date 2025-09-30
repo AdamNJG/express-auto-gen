@@ -1,0 +1,6 @@
+module.exports = {
+  api_folders: [{
+    directory: 'stuff',
+    api_slug: '_api'
+  }]
+}; 

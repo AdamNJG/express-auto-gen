@@ -2,7 +2,14 @@ export type File = {
   name: string;
   route: string;
   path: string;
+  handler: string;
+  config: Config;
+}
+
+export type Config = {
   httpMethod: HttpMethod;
+  middleware: string[];
+  handlerName: string;
 }
 
 export enum HttpMethod {

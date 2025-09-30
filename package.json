@@ -17,6 +17,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@babel/generator": "^7.28.3",
+    "@babel/parser": "^7.28.4",
+    "@babel/traverse": "^7.28.4",
+    "@babel/types": "^7.28.4",
     "express": "^5.1.0",
     "micromatch": "^4.0.8"
   },
@@ -30,6 +34,8 @@
     "@stryker-mutator/jest-runner": "^9.1.1",
     "@stryker-mutator/vitest-runner": "^9.1.1",
     "@stylistic/eslint-plugin": "^5.4.0",
+    "@types/babel__generator": "^7.27.0",
+    "@types/babel__traverse": "^7.28.0",
     "@types/express": "^5.0.3",
     "@types/micromatch": "^4.0.9",
     "@types/node": "^24.5.2",

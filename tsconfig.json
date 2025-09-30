@@ -6,7 +6,8 @@
     "rootDir": "src",
     "strict": true,
     "esModuleInterop": true,
-    "moduleResolution": "nodenext"
+    "moduleResolution": "nodenext",
+    "allowSyntheticDefaultImports": true,
   },
   "include": ["src"]
 }

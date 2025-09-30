@@ -1,6 +1,6 @@
 import * as path from 'path';
 import * as fs from 'fs';
-import { AutoApiConfig } from './config.js';
+import { AutoApiConfig } from './types.js';
 import { Module } from 'module';
 import ts from 'typescript';
 import vm from 'vm';
@@ -13,6 +13,7 @@ export async function loadConfig (): Promise<AutoApiConfig | undefined> {
 
     const filePath = path.join(projectRoot, 'autoapi.config.' + extension);
     if (fs.existsSync(filePath)) {
+
       const ext = path.extname(filePath).toLowerCase();
 
       switch (ext) {
@@ -45,7 +46,6 @@ function importTsConfig (file: string) {
     },
     fileName: path.basename(file)
   }).outputText;
-
   return loadTsModuleCjs(jsCode, file) as AutoApiConfig;
 }
 

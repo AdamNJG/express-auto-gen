@@ -1,6 +1,5 @@
 export type AutoApiConfig = {
   api_folders: ApiFolder[]
-  
 }
 
 type ApiFolder = {
